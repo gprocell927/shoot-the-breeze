@@ -128,15 +128,13 @@ describe('Application', () => {
     expect(wrapper.state().submitButtonDisabled).to.equal(true);
   });
 
-  it('should enable the submit button if content is in the input field', () => { //this is the problematic test
+  it('should enable the submit button if content is in the input field', () => {
     const wrapper = mount(<Application />);
-    // input.simulate('change', { target: { value: 'Hello' } })
-    // eval(locus);
     wrapper.find('#message-entry-field').simulate('change', {target: {value: 'Hello'}});
     expect(wrapper.state().submitButtonDisabled).to.equal(false);
   })
 
-  it('should change the order in which the messages are rendered in messages array (sort up)', ()=> { //need to finish
+  it('should change the order in which the messages are rendered in messages array (sort up)', ()=> {
     const wrapper = mount(<Application />);
     wrapper.state().messages = [message1, message2];
 
