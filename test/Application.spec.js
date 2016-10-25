@@ -7,7 +7,7 @@ import Application from '../lib/components/Application';
 
 let message1 = {
   key: 'KUhAD9OYLTSjiMHBfgk',
-  user: 'message1',
+  user: 'message1 (lower date)',
   body: 'hello',
   photo: 'myphoto.com/mine',
   email: 'me@me.com',
@@ -17,7 +17,7 @@ let message1 = {
 
 let message2 = {
   key: 'KUhAD9OYLpeSjiMHBfgk',
-  user: 'message2',
+  user: 'message2 (higher date)',
   body: 'hi',
   photo: 'yourphoto.com/yours',
   email: 'you@me.com',
@@ -149,5 +149,11 @@ describe('Application', () => {
     wrapper.find('.sort-down-button').simulate('click');
     assert.deepEqual(wrapper.state().messages, [message1, message2]);
   });
+
+  it('should disable the submit button if message is too long (more than 140 chars)', ()=> {
+    const wrapper = mount(<Application />);
+    wrapper.find('#message-entry-field').simulate('change', {target: {value: 'dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs'}});
+    expect(wrapper.state().submitButtonDisabled).to.equal(true);
+  })
 
 }); //end of describe Application
