@@ -8,8 +8,8 @@ header {
   display: flex;
   height: 40px;
   margin: 0 auto;
-  position: relative;
-  width: $standard-element-width;
+  position: fixed;
+  width: 100vw;
 
   #page-main-title {
     color: white;

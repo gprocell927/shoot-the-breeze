@@ -3,11 +3,11 @@
 
 .body {
   margin: 0 auto;
-  width: $standard-element-width;
+  width: 100vw;
 
   .message-output-container {
     display: inline-block;
-    height: 2000px;
+    height: 800px;
     overflow: auto;
     width: 70%;
 
