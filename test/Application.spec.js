@@ -1,5 +1,5 @@
 import React from 'react';
-
+require ('locus');
 import { shallow, mount, render } from 'enzyme';
 import { assert,expect } from 'chai';
 
@@ -106,8 +106,16 @@ describe('Application', () => {
 
     let button = wrapper.find('.submit-message-button').simulate('click');
     expect(wrapper.state().submitButtonDisabled).to.equal(true);
+  });
 
+  it('should enable the submit button if content is in the input field', () => {
+    const wrapper = mount(<Application />);
+    wrapper.find('#message-entry-field').simulate('keydown', {which: 'a'});
+    eval(locus);
+    expect(wrapper.state().submitButtonDisabled).to.equal(false);
   })
+
+
 
 
 });
