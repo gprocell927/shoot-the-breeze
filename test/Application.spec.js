@@ -128,7 +128,7 @@ describe('Application', () => {
     expect(wrapper.state().submitButtonDisabled).to.equal(true);
   });
 
-  it.skip('should enable the submit button if content is in the input field', () => { //this is the problematic test 
+  it('should enable the submit button if content is in the input field', () => { //this is the problematic test
     const wrapper = mount(<Application />);
     // input.simulate('change', { target: { value: 'Hello' } })
     // eval(locus);
@@ -141,8 +141,7 @@ describe('Application', () => {
     wrapper.state().messages = [message1, message2];
 
     wrapper.find('.sort-up-button').simulate('click');
-    assert.equal()
-  };
-
+    assert.equal("dogs", "cats");
+  });
 
 });
