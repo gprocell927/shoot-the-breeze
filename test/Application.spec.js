@@ -89,26 +89,17 @@ describe('Application', () => {
     assert.deepEqual(wrapper.state().filteredMessages, []);
   });
 
-  it.skip('has a function called clearInputField() that clears the input field', () => {
+  it('has a function called clearInputField() that clears the input field', () => {
     const wrapper = mount(<Application />);
 
+    wrapper.state().newMessage = 'test message';
 
-    wrapper.clearInputField();
+    assert.equal(wrapper.state().newMessage, 'test message');
+
+    wrapper.instance().clearInputField();
+
     assert.equal(wrapper.state().newMessage, '');
   });
-});
 
-context('')
-describe(' Features of Application', () => {
-it.skip('should return the stubbed data', () =>{
-  beforeEach(()=>{
-   var stub = sinon.stub(Application, 'get');
-   stub.withArgs('/users').returns([
-     { user: 'gabiprocell', body: 'hello' },
-     { username: 'jcasimir', body: 'i love panera' }
-   ]);
- });
- var users = Application.get('/users');
- assert.equal(users[0].user, 'gabiprocell');
-});
+
 });
