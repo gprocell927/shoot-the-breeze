@@ -1,7 +1,7 @@
 import React from 'react';
-
+require ('locus');
 import { shallow, mount, render } from 'enzyme';
-import { assert } from 'chai';
+import { assert,expect } from 'chai';
 
 import Application from '../lib/components/Application';
 
@@ -17,9 +17,34 @@ describe('Application', () => {
     assert.deepEqual(wrapper.state().messages, []);
   });
 
-  it('has a userFilter state that is an empty string', () => {
+  it('should allow us to set a messages array as a state', () => {
+    const wrapper = mount(<Application />);
+    wrapper.state().messages = ['Users'];
+    expect(wrapper.state().messages.length).to.equal(1);
+  });
+
+  it('should allow us to set a user state', () => {
+    const wrapper = mount(<Application />);
+    expect(wrapper.state.user).to.equal(undefined);
+    wrapper.state().user = 'JIMMY';
+    expect(wrapper.state().user).to.equal('JIMMY');
+  });
+
+  it('should allow us to set a filtered messages array as a state', () => {
+    const wrapper = mount(<Application />);
+    wrapper.state().filteredMessages = ['fancy filtered messages'];
+    expect(wrapper.state().filteredMessages.length).to.equal(1)
+  });
+
+  it('should allow us to set a user', ()=>{
+    const wrapper = mount(<Application />);
+    wrapper.state().currentUser = 'Yung Jhun';
+    expect(wrapper.state().currentUser).to.equal('Yung Jhun');
+  });
+
+  it('has a search state that is an empty string', () => {
     const wrapper = shallow(<Application />);
-    assert.deepEqual(wrapper.state().userFilter, '');
+    assert.deepEqual(wrapper.state().search, '');
   });
 
   it('has a new message that is set to an empty string by default', () => {
@@ -28,9 +53,20 @@ describe('Application', () => {
 
   });
 
+  it('has a state called newMessageLength that is set to an empty string by default', () => {
+    const wrapper = shallow(<Application />);
+    assert.equal(wrapper.state().newMessageLength, '');
+
+  });
+
   it('has a user that is set to an empty string by default', () => {
     const wrapper = shallow(<Application />);
     assert.equal(wrapper.state().user, '');
+  });
+
+  it('has a currentUser that is set to an empty string by default', () => {
+    const wrapper = shallow(<Application />);
+    assert.equal(wrapper.state().currentUser, '');
   });
 
   it('has a state that disables the submit button by default', () => {
@@ -43,15 +79,43 @@ describe('Application', () => {
     assert.equal(wrapper.state().clearButtonDisabled, true);
   });
 
-  it.skip('has a function called clearInputField() that clears the input field', () => {
+  it('has a search state that is set to an empty string by default', () => {
+    const wrapper = shallow(<Application />);
+    assert.equal(wrapper.state().search, '');
+  });
+
+  it('has a filteredMessages state that is an array', () => {
+    const wrapper = shallow(<Application />);
+    assert.deepEqual(wrapper.state().filteredMessages, []);
+  });
+
+  it('has a function called clearInputField() that clears the input field', () => {
     const wrapper = mount(<Application />);
 
+    wrapper.state().newMessage = 'test message';
 
-    wrapper.clearInputField();
+    assert.equal(wrapper.state().newMessage, 'test message');
+
+    wrapper.instance().clearInputField();
+
     assert.equal(wrapper.state().newMessage, '');
   });
 
-});
+  it('should disable the submit button if no content is in the input field', () => {
+    const wrapper = mount(<Application />);
 
-describe(' Features of Application', () => {
+    let button = wrapper.find('.submit-message-button').simulate('click');
+    expect(wrapper.state().submitButtonDisabled).to.equal(true);
+  });
+
+  it('should enable the submit button if content is in the input field', () => {
+    const wrapper = mount(<Application />);
+    wrapper.find('#message-entry-field').simulate('keydown', {which: 'a'});
+    eval(locus);
+    expect(wrapper.state().submitButtonDisabled).to.equal(false);
+  })
+
+
+
+
 });
