@@ -7,7 +7,7 @@ import Application from '../lib/components/Application';
 
 let message1 = {
   key: 'KUhAD9OYLTSjiMHBfgk',
-  user: 'me',
+  user: 'message1',
   body: 'hello',
   photo: 'myphoto.com/mine',
   email: 'me@me.com',
@@ -17,7 +17,7 @@ let message1 = {
 
 let message2 = {
   key: 'KUhAD9OYLpeSjiMHBfgk',
-  user: 'you',
+  user: 'message2',
   body: 'hi',
   photo: 'yourphoto.com/yours',
   email: 'you@me.com',
@@ -139,7 +139,7 @@ describe('Application', () => {
     wrapper.state().messages = [message1, message2];
 
     wrapper.find('.sort-up-button').simulate('click');
-    assert.equal("dogs", "cats");
+    assert.deepEqual(wrapper.state().messages, [message2, message1]);
   });
 
-});
+}); //end of describe Application
