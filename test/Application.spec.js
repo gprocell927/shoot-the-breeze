@@ -5,6 +5,26 @@ import { assert,expect } from 'chai';
 
 import Application from '../lib/components/Application';
 
+let message1 = {
+  key: 'KUhAD9OYLTSjiMHBfgk',
+  user: 'me',
+  body: 'hello',
+  photo: 'myphoto.com/mine',
+  email: 'me@me.com',
+  time: 'now',
+  id: 1000000000000,
+};
+
+let message2 = {
+  key: 'KUhAD9OYLpeSjiMHBfgk',
+  user: 'you',
+  body: 'hi',
+  photo: 'yourphoto.com/yours',
+  email: 'you@me.com',
+  time: 'later',
+  id: 2222222000000000000,
+};
+
 describe('Application', () => {
 
   it('renders as a <div>', () => {
@@ -108,15 +128,20 @@ describe('Application', () => {
     expect(wrapper.state().submitButtonDisabled).to.equal(true);
   });
 
-  it('should enable the submit button if content is in the input field', () => {
+  it.skip('should filter messages messages by user input', () => { //need to finish
     const wrapper = mount(<Application />);
-    wrapper.find('#message-entry-field').simulate('keydown', {which: 'a'});
-    eval(locus);
-    // expect(wrapper.state().submitButtonDisabled).to.equal(false);
-    assert.equal(wrapper.state().submitButtonDisabled, false);
+    wrapper.find('#filter-input-field').simulate('keyUp', {keyCode: 76});
+    wrapper.find('#filter-input-field').simulate('keyDown', {keyCode: 76});
+
   });
 
+  it('should change the order in which the messages are rendered in messages array (sort up)', ()=> { //need to finish 
+    const wrapper = mount(<Application />);
+    wrapper.state().messages = [message1, message2];
 
+    wrapper.find('.sort-up-button').simulate('click');
+    assert.equal()
+  };
 
 
 });
