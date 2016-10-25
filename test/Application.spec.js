@@ -142,4 +142,12 @@ describe('Application', () => {
     assert.deepEqual(wrapper.state().messages, [message2, message1]);
   });
 
+  it('should change the order in which the messages are rendered in messages array (sort down)', ()=> {
+    const wrapper = mount(<Application />);
+    wrapper.state().messages = [message2, message1];
+
+    wrapper.find('.sort-down-button').simulate('click');
+    assert.deepEqual(wrapper.state().messages, [message1, message2]);
+  });
+
 }); //end of describe Application
