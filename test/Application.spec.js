@@ -112,8 +112,9 @@ describe('Application', () => {
     const wrapper = mount(<Application />);
     wrapper.find('#message-entry-field').simulate('keydown', {which: 'a'});
     eval(locus);
-    expect(wrapper.state().submitButtonDisabled).to.equal(false);
-  })
+    // expect(wrapper.state().submitButtonDisabled).to.equal(false);
+    assert.equal(wrapper.state().submitButtonDisabled, false);
+  });
 
 
 
