@@ -108,10 +108,11 @@ describe('Application', () => {
     expect(wrapper.state().submitButtonDisabled).to.equal(true);
   });
 
-  it('should enable the submit button if content is in the input field', () => {
+  it.skip('should enable the submit button if content is in the input field', () => {
     const wrapper = mount(<Application />);
-    wrapper.find('#message-entry-field').simulate('keydown', {which: 'a'});
-    eval(locus);
+    // input.simulate('change', { target: { value: 'Hello' } })
+    // eval(locus);
+    wrapper.find('#message-entry-field').simulate('change', {target: {value: 'Hello'}});
     expect(wrapper.state().submitButtonDisabled).to.equal(false);
   })
 
