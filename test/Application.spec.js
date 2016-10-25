@@ -101,5 +101,13 @@ describe('Application', () => {
     assert.equal(wrapper.state().newMessage, '');
   });
 
+  it('should disable the submit button if no content is in the input field', () => {
+    const wrapper = mount(<Application />);
+
+    let button = wrapper.find('.submit-message-button').simulate('click');
+    expect(wrapper.state().submitButtonDisabled).to.equal(true);
+
+  })
+
 
 });
