@@ -183,6 +183,13 @@ describe('Application', () => {
     wrapper.find('#message-entry-field').simulate('change', {target: {value: ''}});
     let output = wrapper.find('#character-counter-output');
     assert.equal(output.text(), 0);
-  })
+  });
+
+  it('character count output should display 1, and only 1, when there is only 1 character in the input field', ()=>{
+    const wrapper = mount(<Application />);
+    wrapper.find('#message-entry-field').simulate('change', {target: {value: 'r'}});
+    let output = wrapper.find('#character-counter-output');
+    assert.equal(output.text(), 1);
+  });
 
 }); //end of describe Application
