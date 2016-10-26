@@ -2,14 +2,14 @@
 @import "mixins.scss";
 
 .body {
-  height: 520px;
+  height: 1500px;
   margin: 0 auto;
   width: 100vw;
 
   .message-output-container {
     border-top: 1px solid gray;
     display: inline-block;
-    height: 800px;
+    height: 2000px;
     margin-top: 150px;
     overflow: auto;
     width: 70%;
@@ -45,7 +45,6 @@
     display: inline-block;
     float: right;
     height: 2000px;
-    position: fixed;
     text-align: center;
     width: 30%;
 
