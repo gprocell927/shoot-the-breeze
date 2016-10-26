@@ -5,6 +5,26 @@ import { assert,expect } from 'chai';
 
 import Application from '../lib/components/Application';
 
+let message1 = {
+  key: 'KUhAD9OYLTSjiMHBfgk',
+  user: 'message1 (lower date)',
+  body: 'hello',
+  photo: 'myphoto.com/mine',
+  email: 'me@me.com',
+  time: 'now',
+  id: 1000000000000,
+};
+
+let message2 = {
+  key: 'KUhAD9OYLpeSjiMHBfgk',
+  user: 'message2 (higher date)',
+  body: 'hi',
+  photo: 'yourphoto.com/yours',
+  email: 'you@me.com',
+  time: 'later',
+  id: 2222222000000000000,
+};
+
 describe('Application', () => {
 
   it('renders as a <div>', () => {
@@ -110,12 +130,30 @@ describe('Application', () => {
 
   it('should enable the submit button if content is in the input field', () => {
     const wrapper = mount(<Application />);
-    wrapper.find('#message-entry-field').simulate('keydown', {which: 'a'});
-    eval(locus);
+    wrapper.find('#message-entry-field').simulate('change', {target: {value: 'Hello'}});
     expect(wrapper.state().submitButtonDisabled).to.equal(false);
   })
 
+  it('should change the order in which the messages are rendered in messages array (sort up)', ()=> {
+    const wrapper = mount(<Application />);
+    wrapper.state().messages = [message1, message2];
 
+    wrapper.find('.sort-up-button').simulate('click');
+    assert.deepEqual(wrapper.state().messages, [message2, message1]);
+  });
 
+  it('should change the order in which the messages are rendered in messages array (sort down)', ()=> {
+    const wrapper = mount(<Application />);
+    wrapper.state().messages = [message2, message1];
 
-});
+    wrapper.find('.sort-down-button').simulate('click');
+    assert.deepEqual(wrapper.state().messages, [message1, message2]);
+  });
+
+  it('should disable the submit button if message is too long (more than 140 chars)', ()=> {
+    const wrapper = mount(<Application />);
+    wrapper.find('#message-entry-field').simulate('change', {target: {value: 'dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs'}});
+    expect(wrapper.state().submitButtonDisabled).to.equal(true);
+  });
+
+}); //end of describe Application
