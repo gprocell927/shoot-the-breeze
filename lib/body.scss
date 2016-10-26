@@ -8,6 +8,7 @@
   .message-output-container {
     display: inline-block;
     height: 800px;
+    margin-top: 150px;
     overflow: auto;
     width: 70%;
 
@@ -33,11 +34,16 @@
 
   } //end of message-output-container
 
+  .users-and-filter-buttons-container {
+    margin-top: 200px;
+  }
+
   .user-info-container {
     background-color: $light-gray;
     display: inline-block;
     float: right;
     height: 2000px;
+    position: fixed;
     text-align: center;
     width: 30%;
 
