@@ -2,15 +2,12 @@
 @import "mixins.scss";
 
 .body {
-  height: 1500px;
   margin: 0 auto;
-  width: 100vw;
+  width: $standard-element-width;
 
   .message-output-container {
-    border-top: 1px solid gray;
     display: inline-block;
     height: 2000px;
-    margin-top: 150px;
     overflow: auto;
     width: 70%;
 
@@ -35,10 +32,6 @@
     }
 
   } //end of message-output-container
-
-  .users-and-filter-buttons-container {
-    margin-top: 200px;
-  }
 
   .user-info-container {
     background-color: $light-gray;

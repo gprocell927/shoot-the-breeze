@@ -9,8 +9,7 @@ header {
   height: 40px;
   margin: 0 auto;
   position: relative;
-  width: 100vw;
-  z-index: 1;
+  width: $standard-element-width;
 
   #page-main-title {
     color: white;
@@ -61,7 +60,7 @@ header {
     #filter-input-field {
       display: block;
       margin: 0 auto;
-      width: 60%;
+      width: 80%;
     }
 
     .buttons-container-header {
