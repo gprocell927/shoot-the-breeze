@@ -1,5 +1,4 @@
 import React from 'react';
-require ('locus');
 import { shallow, mount, render } from 'enzyme';
 import { assert,expect } from 'chai';
 
