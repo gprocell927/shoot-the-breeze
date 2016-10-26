@@ -25,6 +25,27 @@ let message2 = {
   id: 2222222000000000000,
 };
 
+let messageGN = {
+  key: 'KUhAD9OYLpeSfjaifa00jaHBfgk',
+  user: 'Graham Nessler',
+  body: 'hi there',
+  photo: 'yourphoto.com/grahams',
+  email: 'graham@me.com',
+  time: 'no time',
+  id: 3333339333333333333333,
+};
+
+let messageGP = {
+  key: 'QUhAD9OYLpeSfji89fa00jaHBfgk',
+  user: 'Gabrielle Procell',
+  body: 'yo',
+  photo: 'yourphoto.com/gabis',
+  email: 'gabi@me.com',
+  time: 'yesterday',
+  id: 6,
+};
+
+
 describe('Application', () => {
 
   it('renders as a <div>', () => {
@@ -155,5 +176,13 @@ describe('Application', () => {
     wrapper.find('#message-entry-field').simulate('change', {target: {value: 'dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs'}});
     expect(wrapper.state().submitButtonDisabled).to.equal(true);
   });
+
+  it('input field should not display anything when message length is zero', ()=>{
+    const wrapper = mount(<Application />);
+    wrapper.find('#message-entry-field').simulate('change', {target: {value: 'Hello'}});
+    wrapper.find('#message-entry-field').simulate('change', {target: {value: ''}});
+    let output = wrapper.find('#character-counter-output');
+    assert.equal(output.text(), 0);
+  })
 
 }); //end of describe Application
